@@ -10,6 +10,6 @@ public class UsuarioService {
 
 	@RequestMapping(path = "/user", method = RequestMethod.GET)
 	public String test() {
-		return "oh eu aqui";
+		return "oh eu aqui djfhdsoghsiougiho";
 	}
 }
