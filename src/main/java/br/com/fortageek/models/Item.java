@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity(name = "item")
 public class Item {
@@ -20,23 +22,19 @@ public class Item {
 	@Column(name = "nome")
 	private String nome;
 	
-	@Column(name = "id_categoria")
-	private Integer id_categoria;
-	
 	@Column(name = "foto")
-	private Integer foto;
+	private String foto;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_categoria")
+	private Categoria categoria;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_usuario")
+	private Usuario usuario;
 
 	public Item() {
 		super();
-	}
-
-	public Item(Integer id, String descricao, String nome, Integer id_categoria, Integer foto) {
-		super();
-		this.id = id;
-		this.descricao = descricao;
-		this.nome = nome;
-		this.id_categoria = id_categoria;
-		this.foto = foto;
 	}
 
 	public Integer getId() {
@@ -62,21 +60,21 @@ public class Item {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-	public Integer getId_categoria() {
-		return id_categoria;
-	}
-
-	public void setId_categoria(Integer id_categoria) {
-		this.id_categoria = id_categoria;
-	}
-
-	public Integer getFoto() {
+	
+	public String getFoto() {
 		return foto;
 	}
 
-	public void setFoto(Integer foto) {
+	public void setFoto(String foto) {
 		this.foto = foto;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
 	}
 	
 	

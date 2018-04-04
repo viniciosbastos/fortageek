@@ -1,10 +1,16 @@
 package br.com.fortageek.models;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity(name = "usuario")
 public class Usuario {
@@ -32,20 +38,21 @@ public class Usuario {
 	@Column(name = "role")
 	private String role;
 	
+	@ManyToOne
+	@JoinColumn(name = "id_cidade")
+	private Cidade cidade;
+	
+	@OneToMany(mappedBy = "usuario")
+	private Set<Proposta> propostas = new HashSet<Proposta>();
+	
+	@OneToMany(mappedBy = "usuario")
+	private Set<Anuncio> anuncios = new HashSet<Anuncio>();
+	
+	@OneToMany(mappedBy = "usuario")
+	private Set<Item> itens = new HashSet<Item>();
+	
 	public Usuario() {
 		super();
-	}
-
-	public Usuario(Integer id, String nome, String username, String password, Character sexo, Integer enabled,
-			String role) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.username = username;
-		this.password = password;
-		this.sexo = sexo;
-		this.enabled = enabled;
-		this.role = role;
 	}
 
 	public Integer getId() {
@@ -102,5 +109,39 @@ public class Usuario {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public Cidade getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
+	}
+
+	public Set<Proposta> getPropostas() {
+		return propostas;
+	}
+
+	public void setPropostas(Set<Proposta> propostas) {
+		this.propostas = propostas;
+	}
+
+	public Set<Anuncio> getAnuncios() {
+		return anuncios;
+	}
+
+	public void setAnuncios(Set<Anuncio> anuncios) {
+		this.anuncios = anuncios;
+	}
+
+	public Set<Item> getItens() {
+		return itens;
+	}
+
+	public void setItens(Set<Item> itens) {
+		this.itens = itens;
 	}	
+	
 }
+

@@ -219,3 +219,25 @@ update usuario set role = 'user' and enabled = 1 where id=1 [22018-196]
 2018-03-19 19:09:20 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLException: Data conversion error converting "ROLE_USER"; SQL statement:
 update usuario set role = 'ROLE_USER' and enabled = 1 [22018-196]
+2018-04-04 15:20:43 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ALTER TABLE DROP COLUMN[*] CIDADE_ID "; expected "., ADD, SET, RENAME, DROP, CHANGE, MODIFY, ALTER"; SQL statement:
+alter table drop column cidade_id [42001-196]
+2018-04-04 15:21:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ALTER TABLE DROP COLUMN[*] CIDADE_ID "; expected "., ADD, SET, RENAME, DROP, CHANGE, MODIFY, ALTER"; SQL statement:
+alter table drop column cidade_id [42001-196]
+2018-04-04 15:29:33 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT * FROM CIDADE
+
+SELECT[*] * FROM USUARIO "; SQL statement:
+select * from cidade
+
+select * from usuario [42000-196]
+2018-04-04 15:38:59 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (ITEM: FOTO INTEGER)"; SQL statement:
+insert into item (descricao, foto, id_categoria, nome, id_usuario) values ('Livro do GOT', '', 1, 'Guerra dos Tronos', 1) -- ('Livro do GOT', '', 1, 'Guerra dos Tronos', 1) [22018-196]
+2018-04-04 15:40:51 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TABLE" not found; SQL statement:
+update table item set foto = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLRXGayo2zyXSlV5gniqQ5R3rkUnwnrR48FxKkh28IX-h3h_Mn' where id = 1 [42102-196]
+2018-04-04 15:50:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ITEM[*] "; expected "INSERT, {"; SQL statement:
+item [42001-196]

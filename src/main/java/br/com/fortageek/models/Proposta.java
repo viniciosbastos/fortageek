@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity(name = "proposta")
 public class Proposta {
@@ -17,26 +19,20 @@ public class Proposta {
 	@Column(name = "status")
 	private Integer status;
 	
-	@Column(name = "id_anuncio")
-	private Integer id_anuncio;
+	@ManyToOne
+	@JoinColumn(name = "id_anuncio")
+	private Anuncio anuncio;
 	
-	@Column(name = "id_item")
-	private Integer id_item;
+	@ManyToOne
+	@JoinColumn(name = "id_item")
+	private Item item;
 	
-	@Column(name = "id_usuario")
-	private Integer id_usuario;
+	@ManyToOne
+	@JoinColumn(name = "id_usuario")
+	private Usuario usuario;
 
 	public Proposta() {
 		super();
-	}
-
-	public Proposta(Integer id, Integer status, Integer id_anuncio, Integer id_item, Integer id_usuario) {
-		super();
-		this.id = id;
-		this.status = status;
-		this.id_anuncio = id_anuncio;
-		this.id_item = id_item;
-		this.id_usuario = id_usuario;
 	}
 
 	public Integer getId() {
@@ -55,31 +51,29 @@ public class Proposta {
 		this.status = status;
 	}
 
-	public Integer getId_anuncio() {
-		return id_anuncio;
+	public Anuncio getAnuncio() {
+		return anuncio;
 	}
 
-	public void setId_anuncio(Integer id_anuncio) {
-		this.id_anuncio = id_anuncio;
+	public void setAnuncio(Anuncio anuncio) {
+		this.anuncio = anuncio;
 	}
 
-	public Integer getId_item() {
-		return id_item;
+	public Item getItem() {
+		return item;
 	}
 
-	public void setId_item(Integer id_item) {
-		this.id_item = id_item;
+	public void setItem(Item item) {
+		this.item = item;
 	}
 
-	public Integer getId_usuario() {
-		return id_usuario;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setId_usuario(Integer id_usuario) {
-		this.id_usuario = id_usuario;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
-	
-	
-	
+
 	
 }
