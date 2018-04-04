@@ -1,12 +1,16 @@
 package br.com.fortageek.models;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity(name = "anuncio")
 public class Anuncio {
@@ -19,22 +23,19 @@ public class Anuncio {
 	@Column(name = "status")
 	private Integer status;
 	
-	@Column(name = "id_usuario")
-	private Integer id_usuario;
+	@ManyToOne
+	@JoinColumn(name = "id_usuario")
+	private Usuario usuario;
 	
-	@Column(name = "id_item")
-	private Integer id_item;
+	@ManyToOne
+	@JoinColumn(name = "id_item")
+	private Item item;
+	
+	@OneToMany(mappedBy = "anuncio")
+	private Set<Proposta> propostas = new HashSet<Proposta>();
 
 	public Anuncio() {
 		super();
-	}
-
-	public Anuncio(Integer id, Integer status, Integer id_usuario, Integer id_item) {
-		super();
-		this.id = id;
-		this.status = status;
-		this.id_usuario = id_usuario;
-		this.id_item = id_item;
 	}
 
 	public Integer getId() {
@@ -53,22 +54,28 @@ public class Anuncio {
 		this.status = status;
 	}
 
-	public Integer getId_usuario() {
-		return id_usuario;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setId_usuario(Integer id_usuario) {
-		this.id_usuario = id_usuario;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
-	public Integer getId_item() {
-		return id_item;
+	public Item getItem() {
+		return item;
 	}
 
-	public void setId_item(Integer id_item) {
-		this.id_item = id_item;
+	public void setItem(Item item) {
+		this.item = item;
 	}
-	
-	
+
+	public Set<Proposta> getPropostas() {
+		return propostas;
+	}
+
+	public void setPropostas(Set<Proposta> propostas) {
+		this.propostas = propostas;
+	}
 
 }

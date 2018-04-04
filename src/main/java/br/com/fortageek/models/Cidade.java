@@ -19,16 +19,9 @@ public class Cidade {
 	
 	@Column(name = "uf")
 	private String uf;
-
+	
 	public Cidade() {
 		super();
-	}
-
-	public Cidade(Integer id, String nome, String uf) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.uf = uf;
 	}
 
 	public Integer getId() {
@@ -54,7 +47,5 @@ public class Cidade {
 	public void setUf(String uf) {
 		this.uf = uf;
 	}
-	
-	
 
 }
