@@ -27,7 +27,7 @@ public class AnuncioService {
 	@RequestMapping(path = "", method = RequestMethod.POST)
 	public Response newAnuncio(@RequestBody Anuncio anuncio) {
 		anuncioRepository.save(anuncio);
-		return new Response(true,new MessageResponse("Anuncio adicionada com sucesso!"));
+		return new Response(true,new MessageResponse("Anúncio adicionada com sucesso!"));
 	}
 	
 	
