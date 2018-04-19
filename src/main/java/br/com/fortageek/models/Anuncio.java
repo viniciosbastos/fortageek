@@ -5,12 +5,15 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity(name = "anuncio")
 public class Anuncio {
@@ -31,7 +34,8 @@ public class Anuncio {
 	@JoinColumn(name = "id_item")
 	private Item item;
 	
-	@OneToMany(mappedBy = "anuncio")
+	@JsonIgnore
+	@OneToMany(mappedBy = "anuncio", fetch = FetchType.LAZY)
 	private Set<Proposta> propostas = new HashSet<Proposta>();
 
 	public Anuncio() {

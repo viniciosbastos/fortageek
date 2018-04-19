@@ -1,13 +1,17 @@
 package br.com.fortageek.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fortageek.models.Anuncio;
+import br.com.fortageek.models.Usuario;
 import br.com.fortageek.repositories.IAnuncioRepository;
+import br.com.fortageek.repositories.IUsuarioRepository;
 import br.com.fortageek.responses.AnuncioResponse;
 import br.com.fortageek.responses.MessageResponse;
 import br.com.fortageek.responses.Response;
@@ -18,6 +22,9 @@ public class AnuncioService {
 
 	@Autowired
 	private IAnuncioRepository anuncioRepository;
+	
+	@Autowired
+	private IUsuarioRepository usuarioRepository;
 	
 	@RequestMapping(path = "", method = RequestMethod.GET)
 	public Response getAll() {
@@ -30,5 +37,9 @@ public class AnuncioService {
 		return new Response(true,new MessageResponse("Anúncio adicionada com sucesso!"));
 	}
 	
-	
+	@RequestMapping(path = "/meus-anuncios", method = RequestMethod.GET)
+	public Response getAnunciosUsuario(Authentication authentication) {
+		Usuario usuario = usuarioRepository.findByUsername(((User) authentication.getPrincipal()).getUsername()); 
+		return new Response(true, new AnuncioResponse(usuario.getAnuncios()));
+	}
 }

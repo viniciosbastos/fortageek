@@ -5,12 +5,15 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity(name = "usuario")
 public class Usuario {
@@ -41,14 +44,17 @@ public class Usuario {
 	@ManyToOne
 	@JoinColumn(name = "id_cidade")
 	private Cidade cidade;
-	
-	@OneToMany(mappedBy = "usuario")
+		
+	@JsonIgnore
+	@OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
 	private Set<Proposta> propostas = new HashSet<Proposta>();
 	
-	@OneToMany(mappedBy = "usuario")
+	@JsonIgnore
+	@OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
 	private Set<Anuncio> anuncios = new HashSet<Anuncio>();
 	
-	@OneToMany(mappedBy = "usuario")
+	@JsonIgnore
+	@OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
 	private Set<Item> itens = new HashSet<Item>();
 	
 	public Usuario() {

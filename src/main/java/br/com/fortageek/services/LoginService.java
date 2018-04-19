@@ -1,7 +1,5 @@
 package br.com.fortageek.services;
 
-import java.util.Base64.Encoder;
-
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fortageek.models.Usuario;
 import br.com.fortageek.repositories.IUsuarioRepository;
+import br.com.fortageek.responses.LoginSucessoResponse;
 import br.com.fortageek.responses.MessageResponse;
 import br.com.fortageek.responses.Response;
 
@@ -24,14 +23,15 @@ public class LoginService {
 	@RequestMapping(path = "/api/login", method = RequestMethod.POST)
 	public Response doLogin(@RequestBody Usuario usuario) {
 		Usuario u = usuarioRepository.findByUsernameAndPassword(usuario.getUsername(), usuario.getPassword());
+		Response response = null;
 		
-		String responseString = null;
 		if (u != null) {
 			String auth = usuario.getUsername() + ":" + usuario.getPassword();
-			responseString = new String(Base64.encodeBase64(auth.getBytes()));
+			auth = new String(Base64.encodeBase64(auth.getBytes()));			
+			response = new Response(true, new LoginSucessoResponse(auth, u));
 		} else {
-			responseString = "Usuário não encontrado.";
+			response = new Response(false, new MessageResponse("Usuário não encontrado."));
 		}
-		return new Response(true, new MessageResponse(responseString));
+		return response;
 	}
 }
