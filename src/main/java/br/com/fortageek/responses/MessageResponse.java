@@ -1,19 +1,19 @@
 package br.com.fortageek.responses;
 
 public class MessageResponse {
-	private String auth;
+	private String message;
 
-	public MessageResponse(String auth) {
+	public MessageResponse(String message) {
 		super();
-		this.auth = auth;
+		this.message = message;
 	}
 
 	public String getAuth() {
-		return auth;
+		return message;
 	}
 
-	public void setAuth(String auth) {
-		this.auth = auth;
+	public void setAuth(String message) {
+		this.message = message;
 	}
 		
 }

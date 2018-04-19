@@ -1,0 +1,9 @@
+create table usuario(
+	id int primary key auto_increment,
+	nome varchar (120),
+	username varchar (50),
+	password varchar(50),
+	sexo char,
+	role varchar (15),
+	enabled int
+)

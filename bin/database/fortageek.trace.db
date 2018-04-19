@@ -241,13 +241,3 @@ update table item set foto = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:AN
 2018-04-04 15:50:58 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "ITEM[*] "; expected "INSERT, {"; SQL statement:
 item [42001-196]
-2018-04-18 20:08:06 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT * FROM ITEM
-
-UPDATE ITEM[*] SET NOME = 'Guerra dos Tronos', FOTO = 'https://images.livrariasaraiva.com.br/imagemnet/imagem.aspx/?pro_id=9054556&qld=90&l=430&a=-1', DESCRICAO = 'Livro em bom estado.' "; SQL statement:
-select * from item
-
-update item set nome = 'Guerra dos Tronos', foto = 'https://images.livrariasaraiva.com.br/imagemnet/imagem.aspx/?pro_id=9054556&qld=90&l=430&a=-1', descricao = 'Livro em bom estado.' [42000-196]
-2018-04-18 23:01:30 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO ITEM (DESCRICAO, ID_CATEGORIA, NOME, ID_USUARIO, FOTO) VALUES ('Livro em bom estado', 1, 'Tormenta das Espadas', 2, ''HTTPS[*]:                                                                                          ; "; expected "[, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, ILIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
-insert into item (descricao, id_categoria, nome, id_usuario, foto) values ('Livro em bom estado', 1, 'Tormenta das Espadas', 2, ''https://images.livrariasaraiva.com.br/imagemnet/imagem.aspx/?pro_id=3647893&qld=90&l=430&a=-1''); [42001-196]
