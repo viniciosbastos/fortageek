@@ -3,6 +3,7 @@ package br.com.fortageek.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,13 +34,26 @@ public class AnuncioService {
 	
 	@RequestMapping(path = "", method = RequestMethod.POST)
 	public Response newAnuncio(@RequestBody Anuncio anuncio) {
-		anuncioRepository.save(anuncio);
-		return new Response(true,new MessageResponse("Anúncio adicionada com sucesso!"));
+		if(anuncio.getItem()!=null) {
+			anuncioRepository.save(anuncio);
+			return new Response(true,new MessageResponse("Anúncio adicionada com sucesso!"));
+		}
+		else {
+			return new Response(false,new MessageResponse("Anúncio não adicionado!"));
+		}
+		
 	}
 	
 	@RequestMapping(path = "/meus-anuncios", method = RequestMethod.GET)
 	public Response getAnunciosUsuario(Authentication authentication) {
 		Usuario usuario = usuarioRepository.findByUsername(((User) authentication.getPrincipal()).getUsername()); 
 		return new Response(true, new AnuncioResponse(usuario.getAnuncios()));
+	}
+	
+	@RequestMapping(path = "delete/{id}", method = RequestMethod.DELETE)
+	public Response delete(@PathVariable("id") Integer id) {
+		//teste
+		anuncioRepository.deleteById(id);
+		return new Response(true,new MessageResponse("Anúncio deletado com sucesso!"));
 	}
 }

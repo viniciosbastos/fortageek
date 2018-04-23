@@ -2,6 +2,7 @@ package br.com.fortageek.services;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,5 +34,14 @@ public class LoginService {
 			response = new Response(false, new MessageResponse("Usuário não encontrado."));
 		}
 		return response;
+	}
+	
+	@RequestMapping(path = "delete/{id}", method = RequestMethod.DELETE)
+	public Response delete(@PathVariable("id") Integer id) {
+		//teste
+		usuarioRepository.deleteById(id);
+		return new Response(true,new MessageResponse("Usuário deletado com sucesso!"));
+		
+		
 	}
 }
