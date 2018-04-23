@@ -1,6 +1,7 @@
 package br.com.fortageek.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,7 +28,21 @@ public class PropostaService {
 
 	@RequestMapping(path = "", method = RequestMethod.POST)
 	public Response newProposta(@RequestBody Proposta proposta) {
-		propostaRepository.save(proposta);
-		return new Response(true,new MessageResponse("Proposta adicionada com sucesso!"));
+		if(proposta.getAnuncio()!=null&&proposta.getItem()!=null&&proposta.getUsuario()!=null) {
+			propostaRepository.save(proposta);
+			return new Response(true,new MessageResponse("Proposta adicionada com sucesso!"));
+		}
+		else {
+			return new Response(false,new MessageResponse("Proposta não adicionada!"));
+		}
+	}
+	
+	@RequestMapping(path = "delete/{id}", method = RequestMethod.DELETE)
+	public Response delete(@PathVariable("id") Integer id) {
+		//teste
+		propostaRepository.deleteById(id);
+		return new Response(true,new MessageResponse("Proposta deletado com sucesso!"));
+		
+		
 	}
 }
