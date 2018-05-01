@@ -28,12 +28,12 @@ public class CidadeService {
 
 	@RequestMapping(path = "", method = RequestMethod.POST)
 	public Response newCidade(@RequestBody Cidade cidade) {
-		if(cidade.getNome()!=null&&cidade.getUf()!=null) {
+		if(cidade.getNome() != null && cidade.getUf() != null) {
 			cidadeRepository.save(cidade);
-			return new Response(true,new MessageResponse("Cidade adicionada com sucesso!"));
+			return new Response(true,new MessageResponse("Cidade adicionada com sucesso."));
 		}
 		else {
-			return new Response(false,new MessageResponse("Cidade não adicionada!"));
+			return new Response(false,new MessageResponse("Cidade não pôde ser adicionada."));
 		}
 		
 	}
@@ -42,7 +42,7 @@ public class CidadeService {
 	public Response delete(@PathVariable("id") Integer id) {
 		//teste
 		cidadeRepository.deleteById(id);
-		return new Response(true,new MessageResponse("Cidade deletado com sucesso!"));
+		return new Response(true,new MessageResponse("Cidade excluída com sucesso."));
 		
 		
 	}

@@ -34,12 +34,12 @@ public class AnuncioService {
 	
 	@RequestMapping(path = "", method = RequestMethod.POST)
 	public Response newAnuncio(@RequestBody Anuncio anuncio) {
-		if(anuncio.getItem()!=null) {
+		if(anuncio.getItem() != null && anuncio.getItem().validate()) {
 			anuncioRepository.save(anuncio);
-			return new Response(true,new MessageResponse("Anúncio adicionada com sucesso!"));
+			return new Response(true,new MessageResponse("Anúncio adicionado com sucesso."));
 		}
 		else {
-			return new Response(false,new MessageResponse("Anúncio não adicionado!"));
+			return new Response(false,new MessageResponse("Anúncio não pôde ser adicionado."));
 		}
 		
 	}
