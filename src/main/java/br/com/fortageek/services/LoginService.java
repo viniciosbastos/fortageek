@@ -35,13 +35,4 @@ public class LoginService {
 		}
 		return response;
 	}
-	
-	@RequestMapping(path = "delete/{id}", method = RequestMethod.DELETE)
-	public Response delete(@PathVariable("id") Integer id) {
-		//teste
-		usuarioRepository.deleteById(id);
-		return new Response(true,new MessageResponse("Usuário deletado com sucesso!"));
-		
-		
-	}
 }

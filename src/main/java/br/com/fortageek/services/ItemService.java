@@ -29,7 +29,7 @@ public class ItemService {
 	@RequestMapping(path = "", method = RequestMethod.POST)
 	public Response newItem(@RequestBody Item item) {
 		//teste
-		if(item.getNome()!=null&&item.getCategoria()!=null) {
+		if(item != null && item.validate()) {
 			iItemRepository.save(item);
 			return new Response(true,new MessageResponse("Item adicionada com sucesso!"));
 		}

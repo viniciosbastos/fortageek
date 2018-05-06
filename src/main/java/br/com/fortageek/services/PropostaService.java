@@ -28,7 +28,11 @@ public class PropostaService {
 
 	@RequestMapping(path = "", method = RequestMethod.POST)
 	public Response newProposta(@RequestBody Proposta proposta) {
-		if(proposta.getAnuncio()!=null&&proposta.getItem()!=null&&proposta.getUsuario()!=null) {
+		if(	proposta.getAnuncio() != null 
+				&& proposta.getAnuncio().getId() != null 
+				&& proposta.getItem() != null 
+				&& proposta.getItem().validate()) {
+			
 			propostaRepository.save(proposta);
 			return new Response(true,new MessageResponse("Proposta adicionada com sucesso!"));
 		}

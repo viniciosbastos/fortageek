@@ -76,6 +76,16 @@ public class Item {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
+
+	public boolean validate() {
+		if (this.nome == null || this.nome.equals(""))
+			return false;
+		if (this.descricao == null || this.descricao.equals(""))
+			return false;
+		if (this.foto == null || this.foto.equals(""))
+			return false;
+		return true;
+	}
 	
 	
 }
