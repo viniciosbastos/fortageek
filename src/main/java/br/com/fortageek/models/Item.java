@@ -75,6 +75,14 @@ public class Item {
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}	
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public boolean validate() {
