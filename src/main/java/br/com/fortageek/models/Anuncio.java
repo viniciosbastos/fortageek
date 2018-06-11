@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -37,6 +38,10 @@ public class Anuncio {
 	@JsonIgnore
 	@OneToMany(mappedBy = "anuncio", fetch = FetchType.LAZY)
 	private Set<Proposta> propostas = new HashSet<Proposta>();
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "anuncio", fetch = FetchType.LAZY)
+	private Set<Comentario> comentarios = new HashSet<Comentario>();
 
 	public Anuncio() {
 		super();
@@ -82,4 +87,13 @@ public class Anuncio {
 		this.propostas = propostas;
 	}
 
+	@Transient
+	public Integer getNumeroPropostas() {
+		return this.propostas.size();
+	}
+	
+	@Transient
+	public Integer getNumeroComentarios() {
+		return this.comentarios.size();
+	}
 }
