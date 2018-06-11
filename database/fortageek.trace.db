@@ -266,3 +266,16 @@ insert into categoria (nome) value ('Jogos') [42001-196]
 2018-05-01 12:16:14 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO CATEGORIA (NOME) VALUE[*] ('Eletrônicos') "; expected "DIRECT, SORTED, DEFAULT, VALUES, SET, (, WITH, SELECT, FROM"; SQL statement:
 insert into categoria (nome) value ('Eletrônicos') [42001-196]
+2018-06-10 15:55:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT * FROM PROPOSTA
+
+SELECT[*] * FROM ANUNCIO "; SQL statement:
+select * from proposta
+
+select * from anuncio [42000-196]
+2018-06-10 20:55:38 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT * PROPOSTA[*] "; SQL statement:
+select * proposta [42000-196]
+2018-06-10 23:41:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "COMENTATIOS" not found; SQL statement:
+select * from comentatios [42102-196]

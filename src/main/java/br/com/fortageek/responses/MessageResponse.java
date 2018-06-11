@@ -8,11 +8,11 @@ public class MessageResponse {
 		this.message = message;
 	}
 
-	public String getAuth() {
+	public String getMessage() {
 		return message;
 	}
 
-	public void setAuth(String message) {
+	public void setMessage(String message) {
 		this.message = message;
 	}
 		
